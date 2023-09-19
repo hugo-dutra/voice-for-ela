@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# 🦾 Accessibility App for ELA Patients
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🌐 Overview
 
-## Available Scripts
+This project aims to assist individuals with Amyotrophic Lateral Sclerosis (ALS) by providing an intuitive and accessible interface for communication. The application leverages eye-tracking technology, voice synthesis, and a user-friendly UI to facilitate seamless interaction.
 
-In the project directory, you can run:
+## 🛠 Technologies Used
 
-### `npm start`
+- 🎨 Material UI: For the front-end design
+- 👁 [WebGazer.js](https://github.com/brownhci/WebGazer/wiki/Top-Level-API): For eye-tracking
+- 🗣 Whisper: OpenAI's voice synthesis API
+- 🐱‍🏍 NestJS: For the back-end
+- 🔥 Firebase: For real-time database and authentication
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🌟 Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 👀 Eye-Tracking Card Selection
 
-### `npm test`
+The app uses eye-tracking to allow the user to select a card displayed on either the left or right side of the screen. Each selection eliminates all cards on the opposite side and further narrows down the choices through a binary search algorithm. The final selected card is then spoken out loud using voice synthesis.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🃏 Customizable Cards
 
-### `npm run build`
+Caregivers can customize the cards by adding images and naming them. The cards can be iconographic to cater to individuals who may have difficulty reading.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 💾 Local and Web Storage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Initially, the app will allow adding images from the local storage or via web links. Future updates will include user authentication and a back-end to store these images.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🗨 Voice Synthesis
 
-### `npm run eject`
+The final phase of the project will integrate OpenAI's Whisper for voice synthesis to speak the selected card.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🚀 Future Plans
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 🔒 User authentication
+- ☁ Back-end for image storage
+- 🎙 Integration of voice synthesis
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🤝 How to Contribute
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This project is open-source and contributions are welcome. Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute.
 
-## Learn More
+## 📜 License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
