@@ -1,11 +1,16 @@
 import React, { FC } from "react";
 import { SiderProps } from "./types";
+import ImageCard from "../card";
 
 export const Sider: FC<SiderProps> = (props) => {
+  const handleButtonAction = () => {
+    alert('teste button action')
+  }
+
+
   return (
     <div>
-      <h1>{props.title}</h1>
-      Sider {props.siderSide}
+      <ImageCard buttonAction={handleButtonAction} />
     </div>
   )
 }

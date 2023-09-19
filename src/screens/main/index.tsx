@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Sider from '../../containers/sider';
+import Sider from '../../components/sider';
 
 export const MainScreen: FC = () => {
   return (
