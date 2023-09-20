@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 export const FlexContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100vh;
 `;
 
@@ -17,4 +19,11 @@ export const SiderWrapper = styled.div<SiderWrapperProps>`
   overflow: auto;
   flex-grow: 1;
   border-right: ${(props) => (props.last ? "none" : "1px solid #ccc")};
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
 `;

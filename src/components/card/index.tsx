@@ -12,7 +12,6 @@ import { CardContainer } from './style';
 const ImageCard: FC<CardProps> = (props) => {
   return (
     <CardContainer>
-
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           title={props.title}
