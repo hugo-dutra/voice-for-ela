@@ -1,11 +1,16 @@
 import React, { FC } from 'react';
 import Sider from '../../components/sider';
+import { FlexContainer, SiderWrapper } from './style';
 
 export const MainScreen: FC = () => {
   return (
-    <div>
-      <Sider siderSide='left' title='Lado Esquerdo'/>
-      <Sider siderSide='right' title='Lado Direito'/>
-    </div>
+    <FlexContainer>
+      <SiderWrapper>
+        <Sider siderSide='left' title='Lado Esquerdo' />
+      </SiderWrapper>
+      <SiderWrapper>
+        <Sider siderSide='right' title='Lado Direito' />
+      </SiderWrapper>
+    </FlexContainer>
   )
 }
