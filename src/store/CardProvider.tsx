@@ -25,7 +25,6 @@ export const CardProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const updateCards = (newCards: Card[]) => {
-    console.log('updating cards...', newCards);
     setCards(newCards);
   };
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
   height: 150px;
-  width: 150px;
+  width: 110px;
   overflow: hidden;
   display: flex;
   flex-direction: row;

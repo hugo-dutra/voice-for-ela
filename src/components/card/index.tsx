@@ -31,7 +31,7 @@ const ImageCard: FC<CardProps> = (props) => {
         </CardActions>
         <CardMedia
           component="img"
-          height={props.imageProps?.height}
+          height={props.imageProps?.height || "110"}
           image={props.imageProps?.src || "https://mui.com/static/images/cards/paella.jpg"}
           alt={props.imageProps?.alt}
         />

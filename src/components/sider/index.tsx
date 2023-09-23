@@ -17,7 +17,7 @@ export const Sider: FC<SiderProps> = (props) => {
 
   useEffect(() => {
     setCardList([...cards]);
-    console.log('cards list updated...', cards);
+
   }, [cards]);
 
   useEffect(() => {

@@ -6,6 +6,7 @@ export const SiderContainer = styled.div`
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 16px;
+  gap: 6px;
+  padding: 6px;
   max-width: calc(50vw - 32px); // Metade da largura da viewport, descontando as margens
 `;
