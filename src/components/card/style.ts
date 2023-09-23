@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  
-  max-height: 150px;
+  height: 150px;
+  width: 150px;
   overflow: hidden;
   display: flex;
   flex-direction: row;

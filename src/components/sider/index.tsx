@@ -4,21 +4,28 @@ import ImageCard from "../card";
 import { Typography } from "@mui/material";
 import { SiderContainer } from "./style";
 import { useCard } from "../../store/CardProvider";
+import { CardImageProps } from "../card/types";
 
 export const Sider: FC<SiderProps> = (props) => {
 
   const context = useCard();
+  const { cards } = context || { cards: [] };
 
 
-  const cardList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  const cardList = [...cards];
   return (
     <>
       <Typography variant="h6" component="div" gutterBottom>
         {props.title}
       </Typography>
       <SiderContainer>
-        {cardList.map((card) => (
-          <ImageCard buttonAction={() => alert('alert here: ' + card)} title={card + "º"} />
+        {cardList.filter(card => card.side == props.siderSide).map((card, idx) => (
+          <ImageCard key={`card-idx-${idx}`} buttonAction={() => alert('Remove imagem in future')} title={card.title} imageProps={
+            {
+              src: card.imageLink,
+              alt: card.title,
+            } as CardImageProps
+          } />
         ))}
       </SiderContainer>
     </>

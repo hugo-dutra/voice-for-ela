@@ -1,9 +1,7 @@
-import { FC, Fragment } from 'react';
+import { FC } from 'react';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { CardProps } from './types';
 import { CardContainer } from './style';
@@ -11,8 +9,7 @@ import { CardContainer } from './style';
 const ImageCard: FC<CardProps> = (props) => {
   return (
     <CardContainer>
-      <Card sx={{ maxWidth: 130 }}>
-
+      <Card>
         <CardActions disableSpacing>
           <div style={{ cursor: 'pointer' }}>
             <EditIcon onClick={() => alert(props.title)} />
@@ -20,11 +17,10 @@ const ImageCard: FC<CardProps> = (props) => {
         </CardActions>
         <CardMedia
           component="img"
-          height={props.imageProps?.height || 200}
+          height={props.imageProps?.height}
           image={props.imageProps?.src || "https://mui.com/static/images/cards/paella.jpg"}
           alt={props.imageProps?.alt}
         />
-
       </Card>
     </CardContainer>
   );
