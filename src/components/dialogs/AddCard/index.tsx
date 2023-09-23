@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -12,37 +12,36 @@ import { Card, useCard } from '../../../store/CardProvider';
 import { Grid, SelectChangeEvent, TextField } from '@mui/material';
 import SelectSide from '../../selects/selectSide';
 import { v4 as uuidv4 } from 'uuid';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
 const AddCardDialog: React.FC<CardDialogProps> = (props) => {
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const context = useCard();
+  const [storageValue, setStorageValue] = useLocalStorage<Card[]>("cards", []);
 
-  const card: Card = {
+  const [card, setCard] = useState<Card>({
     uuid: undefined,
     title: "",
     imageLink: "",
     side: "left"
-  };
-
-  const addCard = () => context?.addCard({
-    ...card,
-    uuid: uuidv4()
   });
 
-  const validateCardBeforeAdd = () => {
-    if (card.title && card.imageLink) {
-      addCard();
-    }else{
-      alert("Preencha todos os campos");
-    }
-  }
-  
-  const handlerCardTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => card.title = event.target.value;
-  const handleCardLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => card.imageLink = event.target.value;
+
+  const addCard = () => context?.addCard(card);
+
+  const handlerCardTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => setCard({ ...card, title: event.target.value });
+  const handleCardLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => setCard({ ...card, imageLink: event.target.value });
   const handleCardSideChange = (event: SelectChangeEvent<"left" | "right">) => {
-    card.side = event.target.value as "left" | "right";
+    setCard({ ...card, side: event.target.value as "left" | "right" });
+  }
+
+  const persistCards = () => {
+    const newUuid = uuidv4();
+    setCard({ ...card, uuid: newUuid })
+    setStorageValue([...storageValue, { ...card, uuid: newUuid }]);
+    addCard();
   }
 
 
@@ -74,7 +73,7 @@ const AddCardDialog: React.FC<CardDialogProps> = (props) => {
           <Button autoFocus onClick={props.onClose} >
             Fechar
           </Button>
-          <Button onClick={validateCardBeforeAdd} autoFocus>
+          <Button onClick={persistCards} autoFocus>
             Adicionar
           </Button>
         </DialogActions>

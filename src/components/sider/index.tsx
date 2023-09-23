@@ -1,22 +1,28 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { SiderProps } from "./types";
 import ImageCard from "../card";
 import { Typography } from "@mui/material";
 import { SiderContainer } from "./style";
-import { useCard } from "../../store/CardProvider";
+import { Card, useCard } from "../../store/CardProvider";
 import { CardImageProps } from "../card/types";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 export const Sider: FC<SiderProps> = (props) => {
 
   const context = useCard();
   const { cards } = context || { cards: [] };
+  const [storageValue, setStorageValue] = useLocalStorage<Card[]>("cards", []);
+
+  const [cardList, setCardList] = useState<Card[]>([]);
 
   useEffect(() => {
-    console.log(cards);
+    setCardList([...cards]);
   }, [cards]);
 
+  useEffect(() => {
+    setCardList([...storageValue]);
+  }, []);
 
-  const cardList = [...cards];
   return (
     <>
       <Typography variant="h6" component="div" gutterBottom>

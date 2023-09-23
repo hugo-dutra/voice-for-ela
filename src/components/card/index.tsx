@@ -5,14 +5,28 @@ import CardActions from '@mui/material/CardActions';
 import EditIcon from '@mui/icons-material/Edit';
 import { CardProps } from './types';
 import { CardContainer } from './style';
+import { Card as CardFromProvider, useCard } from '../../store/CardProvider';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const ImageCard: FC<CardProps> = (props) => {
+
+  const context = useCard();
+  const { cards, setCards } = context || { cards: [] };
+  const [storageValue, setStorageValue] = useLocalStorage<CardFromProvider[]>("cards", []);
+
+
+  const handleRemoveCard = (props: CardProps) => {
+    const newCards = cards.filter(card => card.uuid !== props.uuid);
+    setStorageValue(newCards);
+    setCards(newCards);
+  }
+
   return (
     <CardContainer>
       <Card>
         <CardActions disableSpacing>
           <div style={{ cursor: 'pointer' }}>
-            <EditIcon onClick={() => alert(props.title)} />
+            <EditIcon onClick={() => handleRemoveCard(props)} />
           </div>
         </CardActions>
         <CardMedia
