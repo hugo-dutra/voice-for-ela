@@ -2,12 +2,29 @@ import { FC } from 'react';
 import Sider from '../../components/sider';
 import { ButtonWrapper, FlexContainer, SiderWrapper } from './style';
 import ImageButton from '../../components/buttons/ImageButton';
+import SelectLeftButton from '../../components/buttons/selectLeftButton';
+import SelectRightButton from '../../components/buttons/selectRightButton';
+import { Grid } from '@mui/material';
 
 export const MainScreen: FC = () => {
+
+
+  const arrayReactComponents = [
+    <SelectLeftButton />,
+    <ImageButton />,
+    <SelectRightButton />
+  ];
+
   return (
     <FlexContainer>
       <ButtonWrapper>
-        <ImageButton />
+        <Grid container direction="row">
+          {arrayReactComponents.map((component, index) => (
+            <Grid item key={`buttons-cotrol-${index}`}>
+              {component}
+            </Grid>
+          ))}
+        </Grid>
       </ButtonWrapper>
       <div style={{ width: '100%', display: 'flex' }}>
         <SiderWrapper>
