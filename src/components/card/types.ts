@@ -1,5 +1,5 @@
 export interface CardProps {
-    uuid: string;
+    uuid: string | undefined;
     children?: React.ReactNode;
     title?: string;
     imageProps?: CardImageProps;

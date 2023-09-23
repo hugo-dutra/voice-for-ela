@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { SiderProps } from "./types";
 import ImageCard from "../card";
 import { Typography } from "@mui/material";
@@ -11,6 +11,10 @@ export const Sider: FC<SiderProps> = (props) => {
   const context = useCard();
   const { cards } = context || { cards: [] };
 
+  useEffect(() => {
+    console.log(cards);
+  }, [cards]);
+
 
   const cardList = [...cards];
   return (
@@ -20,7 +24,7 @@ export const Sider: FC<SiderProps> = (props) => {
       </Typography>
       <SiderContainer>
         {cardList.filter(card => card.side == props.siderSide).map((card, idx) => (
-          <ImageCard key={`card-idx-${idx}`} buttonAction={() => alert('Remove imagem in future')} title={card.title} imageProps={
+          <ImageCard uuid={card.uuid} key={`card-idx-${idx}`} buttonAction={() => alert('Remove imagem in future')} title={card.title} imageProps={
             {
               src: card.imageLink,
               alt: card.title,

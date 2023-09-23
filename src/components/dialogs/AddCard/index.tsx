@@ -30,10 +30,17 @@ const AddCardDialog: React.FC<CardDialogProps> = (props) => {
     ...card,
     uuid: uuidv4()
   });
+
+  const validateCardBeforeAdd = () => {
+    if (card.title && card.imageLink) {
+      addCard();
+    }else{
+      alert("Preencha todos os campos");
+    }
+  }
   
   const handlerCardTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => card.title = event.target.value;
   const handleCardLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => card.imageLink = event.target.value;
-
   const handleCardSideChange = (event: SelectChangeEvent<"left" | "right">) => {
     card.side = event.target.value as "left" | "right";
   }
@@ -67,7 +74,7 @@ const AddCardDialog: React.FC<CardDialogProps> = (props) => {
           <Button autoFocus onClick={props.onClose} >
             Fechar
           </Button>
-          <Button onClick={addCard} autoFocus>
+          <Button onClick={validateCardBeforeAdd} autoFocus>
             Adicionar
           </Button>
         </DialogActions>
