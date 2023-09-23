@@ -10,17 +10,19 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 export const Sider: FC<SiderProps> = (props) => {
 
   const context = useCard();
-  const { cards } = context || { cards: [] };
+  const { cards, updateCards } = context || { cards: [] };
   const [storageValue, setStorageValue] = useLocalStorage<Card[]>("cards", []);
 
   const [cardList, setCardList] = useState<Card[]>([]);
 
   useEffect(() => {
     setCardList([...cards]);
+    console.log('cards list updated...', cards);
   }, [cards]);
 
   useEffect(() => {
     setCardList([...storageValue]);
+    updateCards([...storageValue]);
   }, []);
 
   return (

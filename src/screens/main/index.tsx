@@ -7,8 +7,7 @@ import SelectRightButton from '../../components/buttons/selectRightButton';
 import { Grid } from '@mui/material';
 
 export const MainScreen: FC = () => {
-
-
+  
   const arrayReactComponents = [
     <SelectLeftButton />,
     <ImageButton />,

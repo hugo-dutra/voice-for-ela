@@ -1,12 +1,17 @@
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
-import AddCardDialog from '../dialogs/AddCard';
-import { useState } from 'react';
+import { useCard } from '../../store/CardProvider';
+import { useEffect } from 'react';
 
 const SelectLeftButton = () => {
-  
+
+  const context = useCard();
+  const { cards, updateCards, redistributeCardsAfterElimination } = context;
+
   const handleSelectLeft = () => {
-    console.log("Select Left");
+    const leftCards = cards.filter(card => card.side === 'left');
+    updateCards(leftCards);
+    redistributeCardsAfterElimination(leftCards);
   }
 
   return (

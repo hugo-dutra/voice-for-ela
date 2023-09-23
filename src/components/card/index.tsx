@@ -11,14 +11,14 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 const ImageCard: FC<CardProps> = (props) => {
 
   const context = useCard();
-  const { cards, setCards } = context || { cards: [] };
+  const { cards, updateCards } = context || { cards: [] };
   const [storageValue, setStorageValue] = useLocalStorage<CardFromProvider[]>("cards", []);
 
 
   const handleRemoveCard = (props: CardProps) => {
     const newCards = cards.filter(card => card.uuid !== props.uuid);
     setStorageValue(newCards);
-    setCards(newCards);
+    updateCards(newCards);
   }
 
   return (

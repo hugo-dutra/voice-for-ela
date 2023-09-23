@@ -9,11 +9,10 @@ export type Card = {
 
 export type CardContextType = {
   cards: Card[];
-  setCards: React.Dispatch<React.SetStateAction<Card[]>>;
+  updateCards: (cards: Card[]) => void;
   removeCard: (card: Card) => void;
   addCard: (card: Card) => void;
-  selectLeftCards: () => Card[];
-  selectRightCards: () => Card[];
+  redistributeCardsAfterElimination: (cards: Card[]) => void;
 }
 
 const CardContext = createContext<CardContextType | undefined>(undefined);
@@ -25,15 +24,24 @@ export const CardProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCards([...cards, card]);
   };
 
-  const selectLeftCards = () => cards.filter((card) => card.side === "left");
-  const selectRightCards = () => cards.filter((card) => card.side === "right");
+  const updateCards = (newCards: Card[]) => {
+    console.log('updating cards...', newCards);
+    setCards(newCards);
+  };
+
+  const redistributeCardsAfterElimination = (oldCards: Card[]) => {
+    const newCards = oldCards.map((card, index) => {
+      return { ...card, side: (index % 2 === 0) ? "left" : "right" } as Card;
+    });
+    setCards([...newCards]);
+  }
 
   const removeCard = (card: Card) => {
-    setCards(cards.filter((c) => c.title !== card.title));
+    setCards(cards.filter((c) => c.uuid !== card.uuid));
   };
 
   return (
-    <CardContext.Provider value={{ cards, setCards, removeCard, addCard, selectLeftCards, selectRightCards }}>
+    <CardContext.Provider value={{ cards, updateCards, removeCard, addCard, redistributeCardsAfterElimination }}>
       {children}
     </CardContext.Provider>
   );
