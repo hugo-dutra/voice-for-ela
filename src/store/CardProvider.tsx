@@ -7,18 +7,26 @@ export type Card = {
   side: "left" | "right";
 }
 
+export type EyeCords = {
+  x: number;
+  y: number;
+}
+
 export type CardContextType = {
   cards: Card[];
   updateCards: (cards: Card[]) => void;
   removeCard: (card: Card) => void;
   addCard: (card: Card) => void;
   redistributeCardsAfterElimination: (cards: Card[]) => void;
+  eyeCords: EyeCords;
+  setEyeCords: (eyeCords: EyeCords) => void;
 }
 
 const CardContext = createContext<CardContextType | undefined>(undefined);
 
 export const CardProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cards, setCards] = useState<Card[]>([]);
+  const [eyeCords, setEyeCords] = useState<EyeCords>({ x: 0, y: 0 });
 
   const addCard = (card: Card) => {
     setCards([...cards, card]);
@@ -40,7 +48,7 @@ export const CardProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <CardContext.Provider value={{ cards, updateCards, removeCard, addCard, redistributeCardsAfterElimination }}>
+    <CardContext.Provider value={{ cards, eyeCords, setEyeCords, updateCards, removeCard, addCard, redistributeCardsAfterElimination }}>
       {children}
     </CardContext.Provider>
   );
